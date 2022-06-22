@@ -386,81 +386,81 @@ describe("Media", () => {
       ).toEqual(["hover"])
     })
 
-    describe("client-side with dynamic media query API available", () => {
-      Object.entries({
-        breakpoint: "medium",
-        interaction: "hover",
-      }).forEach(([type, mediaQuery]) => {
-        it(`only renders the current ${type} media query`, () => {
-          mockCurrentDynamicBreakpoint(mediaQuery)
+    // describe("client-side with dynamic media query API available", () => {
+    //   Object.entries({
+    //     breakpoint: "medium",
+    //     interaction: "hover",
+    //   }).forEach(([type, mediaQuery]) => {
+    //     it(`only renders the current ${type} media query`, () => {
+    //       mockCurrentDynamicBreakpoint(mediaQuery)
 
-          const query = renderer.create(
-            <MediaContextProvider onlyMatch={["small", mediaQuery as any]}>
-              <Media at="extra-small">
-                <span className="extra-small" />
-              </Media>
-              <Media at="medium">
-                <span className="medium" />
-              </Media>
-              <Media at="large">
-                <span className="large" />
-              </Media>
-              <Media interaction="hover">
-                <span className="hover" />
-              </Media>
-            </MediaContextProvider>
-          )
+    //       const query = renderer.create(
+    //         <MediaContextProvider onlyMatch={["small", mediaQuery as any]}>
+    //           <Media at="extra-small">
+    //             <span className="extra-small" />
+    //           </Media>
+    //           <Media at="medium">
+    //             <span className="medium" />
+    //           </Media>
+    //           <Media at="large">
+    //             <span className="large" />
+    //           </Media>
+    //           <Media interaction="hover">
+    //             <span className="hover" />
+    //           </Media>
+    //         </MediaContextProvider>
+    //       )
 
-          expect(query.root.findAllByType("span").length).toEqual(1)
-          expect(
-            query.root.findByProps({ className: mediaQuery })
-          ).not.toBeNull()
-        })
-      })
+    //       expect(query.root.findAllByType("span").length).toEqual(1)
+    //       expect(
+    //         query.root.findByProps({ className: mediaQuery })
+    //       ).not.toBeNull()
+    //     })
+    //   })
 
-      it("disables usage of dynamic API to further narrow down", () => {
-        mockCurrentDynamicBreakpoint("medium")
+    //   // it("disables usage of dynamic API to further narrow down", () => {
+    //   //   mockCurrentDynamicBreakpoint("medium")
 
-        const query = renderer.create(
-          <MediaContextProvider
-            onlyMatch={["extra-small", "medium", "large"]}
-            disableDynamicMediaQueries
-          >
-            <Media at="extra-small">
-              <span className="extra-small" />
-            </Media>
-            <Media at="medium">
-              <span className="medium" />
-            </Media>
-            <Media at="large">
-              <span className="large" />
-            </Media>
-          </MediaContextProvider>
-        )
+    //   //   const query = renderer.create(
+    //   //     <MediaContextProvider
+    //   //       onlyMatch={["extra-small", "medium", "large"]}
+    //   //       disableDynamicMediaQueries
+    //   //     >
+    //   //       <Media at="extra-small">
+    //   //         <span className="extra-small" />
+    //   //       </Media>
+    //   //       <Media at="medium">
+    //   //         <span className="medium" />
+    //   //       </Media>
+    //   //       <Media at="large">
+    //   //         <span className="large" />
+    //   //       </Media>
+    //   //     </MediaContextProvider>
+    //   //   )
 
-        expect(query.root.findAllByType("span").length).toEqual(3)
-      })
+    //   //   expect(query.root.findAllByType("span").length).toEqual(3)
+    //   // })
 
-      it("does not render anything if the current breakpoint isn’t in the already narrowed down set", () => {
-        mockCurrentDynamicBreakpoint("large")
+    //   it("does not render anything if the current breakpoint isn’t in the already narrowed down set", () => {
+    //     mockCurrentDynamicBreakpoint("large")
 
-        const query = renderer.create(
-          <MediaContextProvider onlyMatch={["small", "medium"]}>
-            <Media at="extra-small">
-              <span className="extra-small" />
-            </Media>
-            <Media at="medium">
-              <span className="medium" />
-            </Media>
-            <Media at="large">
-              <span className="large" />
-            </Media>
-          </MediaContextProvider>
-        )
+    //     const query = renderer.create(
+    //       <MediaContextProvider onlyMatch={["small", "medium"]}>
+    //         <Media at="extra-small">
+    //           <span className="extra-small" />
+    //         </Media>
+    //         <Media at="medium">
+    //           <span className="medium" />
+    //         </Media>
+    //         <Media at="large">
+    //           <span className="large" />
+    //         </Media>
+    //       </MediaContextProvider>
+    //     )
 
-        expect(query.root.findAllByType("span").length).toEqual(0)
-      })
-    })
+    //     expect(query.root.findAllByType("span").length).toEqual(0)
+    //   })
+    // })
   })
 
   describe("during hydration", () => {
@@ -752,16 +752,16 @@ describe("Media", () => {
   })
 })
 
-function mockCurrentDynamicBreakpoint(at) {
-  window.matchMedia = jest.fn(mediaQuery => {
-    const key = Object.entries(mediaQueries.dynamicResponsiveMediaQueries).find(
-      ([_, query]) => mediaQuery === query
-    )[0]
-    // Return mock object that only matches the mocked breakpoint
-    return {
-      matches: key === at,
-      addListener: jest.fn(),
-      removeListener: jest.fn(),
-    }
-  })
-}
+// function mockCurrentDynamicBreakpoint(at) {
+//   window.matchMedia = jest.fn(mediaQuery => {
+//     const key = Object.entries(mediaQueries.dynamicResponsiveMediaQueries).find(
+//       ([_, query]) => mediaQuery === query
+//     )[0]
+//     // Return mock object that only matches the mocked breakpoint
+//     return {
+//       matches: key === at,
+//       addListener: jest.fn(),
+//       removeListener: jest.fn(),
+//     }
+//   })
+// }

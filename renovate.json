@@ -3,7 +3,7 @@
     "@artsy:lib"
   ],
   "ignoreDeps": [
-    "@artsy/fresnel"
+    "@7iomka/media"
   ],
   "assignees": [
     "damassi"

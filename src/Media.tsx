@@ -215,7 +215,7 @@ export interface MediaContextProviderProps<M> {
    * breakpoints will be mounted client-side and all associated life-cycle hooks
    * will be triggered, which could lead to unintended side-effects.
    */
-  disableDynamicMediaQueries?: boolean
+  // disableDynamicMediaQueries?: boolean
 }
 
 export interface CreateMediaConfig {
@@ -350,44 +350,14 @@ export function createMedia<
 
   const MediaContextProvider: React.FunctionComponent<
     MediaContextProviderProps<BreakpointKey | Interaction>
-  > = ({ disableDynamicMediaQueries, onlyMatch, children }) => {
-    if (disableDynamicMediaQueries) {
-      const MediaContextValue = getMediaContextValue(onlyMatch)
+  > = ({ onlyMatch, children }) => {
+    const MediaContextValue = getMediaContextValue(onlyMatch)
 
-      return (
-        <MediaContext.Provider value={MediaContextValue}>
-          {children}
-        </MediaContext.Provider>
-      )
-    } else {
-      return (
-        <DynamicResponsive.Provider
-          mediaQueries={mediaQueries.dynamicResponsiveMediaQueries}
-          initialMatchingMediaQueries={intersection(
-            mediaQueries.mediaQueryTypes,
-            onlyMatch
-          )}
-        >
-          <DynamicResponsive.Consumer>
-            {matches => {
-              const matchingMediaQueries = Object.keys(matches).filter(
-                key => matches[key]
-              )
-
-              const MediaContextValue = getMediaContextValue(
-                intersection(matchingMediaQueries, onlyMatch)
-              )
-
-              return (
-                <MediaContext.Provider value={MediaContextValue}>
-                  {children}
-                </MediaContext.Provider>
-              )
-            }}
-          </DynamicResponsive.Consumer>
-        </DynamicResponsive.Provider>
-      )
-    }
+    return (
+      <MediaContext.Provider value={MediaContextValue}>
+        {children}
+      </MediaContext.Provider>
+    )
   }
 
   const Media = class extends React.Component<
@@ -455,7 +425,7 @@ export function createMedia<
                           }
 
                           console.warn(
-                            "[@artsy/fresnel] " +
+                            "[@7iomka/media] " +
                               "`at` is being used with the largest breakpoint. " +
                               "Consider using `<Media greaterThanOrEqual=" +
                               `"${largestBreakpoint}">\` to account for future ` +

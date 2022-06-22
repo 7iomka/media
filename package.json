@@ -1,7 +1,7 @@
 {
-  "name": "@artsy/fresnel",
-  "version": "3.5.0",
-  "description": "An SSR compatible approach to CSS media query based responsive layouts for React.",
+  "name": "@7iomka/media",
+  "version": "1.0.0",
+  "description": "CSS-only wrappers for media query based containers",
   "main": "dist/index.js",
   "files": [
     "dist"
@@ -16,10 +16,9 @@
   "typings": "dist/index.d.ts",
   "scripts": {
     "clean": "rm -rf dist",
-    "compile": "babel src --out-dir dist -s --source-maps --extensions '.ts,.tsx' --ignore src/**/__tests__",
-    "kitchen-sink": "cd examples/kitchen-sink && yarn start",
+    "compile": "babel src --out-dir dist -s --source-maps --extensions '.ts,.tsx' --ignore src/**/__test__",
     "lint": "tslint -c tslint.json --project tsconfig.json",
-    "precommit": "lint-staged",
+    
     "prepush": "yarn run type-check",
     "prepublishOnly": "yarn clean && yarn compile && yarn type-declarations",
     "prettier": "prettier",
@@ -33,19 +32,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/artsy/fresnel.git"
+    "url": "git+ssh://git@github.com/7iomka/media.git"
   },
   "authors": [
     "Eloy Durán <eloy.de.enige@gmail.com>",
-    "Art.sy Inc"
+    "Znacovean Simion <7iomka@gmail.com>"
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/artsy/fresnel/issues"
+    "url": "https://github.com/7iomka/media/issues"
   },
-  "homepage": "https://github.com/artsy/fresnel#readme",
+  "homepage": "https://github.com/7iomka/media#readme",
   "peerDependencies": {
-    "react": ">=16.3.0 <18.0.0"
+    "react": ">=16.3.0"
   },
   "devDependencies": {
     "@artsy/auto-config": "1.1.0",
@@ -90,13 +89,7 @@
     "webpack": "4.46.0",
     "webpack-dev-server": "4.2.1"
   },
-  "lint-staged": {
-    "*.@(ts|tsx)": [
-      "tslint -c tslint.json --fix",
-      "yarn prettier-write --",
-      "git add"
-    ]
-  },
+  
   "prettier": {
     "semi": false,
     "singleQuote": false,

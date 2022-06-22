@@ -1,4 +1,4 @@
-import { createMedia } from "@artsy/fresnel"
+import { createMedia } from "@7iomka/media"
 
 const ExampleAppMedia = createMedia({
   breakpoints: {

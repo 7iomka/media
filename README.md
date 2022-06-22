@@ -1,31 +1,36 @@
-# @artsy/fresnel
+# @7iomka/media
 
 [![CircleCI][ci-icon]][ci] [![npm version][npm-icon]][npm]
-
-> The Fresnel equations describe the reflection of light when incident on an
-> interface between different optical media.
-
-– https://en.wikipedia.org/wiki/Fresnel_equations
-
-### ⚠️ Due to React 18 more strictly handling server-side rendering rehydration this lib is now imcompatable with any version greater than 17. See [this issue](https://github.com/artsy/fresnel/issues/260) for more info. And contributions welcome 🙏
 
 ## Installation
 
 ```sh
-  yarn add @artsy/fresnel
+  yarn add @7iomka/media
 ```
 
 **Table of Contents**
 
-- [Overview](#overview)
-- [Basic Example](#basic-example)
-- [Server-side Rendering (SSR)](#server-side-rendering-ssr-usage)
-- [Usage with Gatsby or Next](#usage-with-gatsby-or-next)
-- [Example Apps](#example-apps)
-- [Why not conditionally render?](#why-not-conditionally-render)
-- [API](#api)
-- [Pros vs Cons](#pros-vs-cons)
-- [Development](#development)
+- [@7iomka/media](#7iomkamedia)
+  - [Installation](#installation)
+  - [Overview](#overview)
+  - [Basic Example](#basic-example)
+  - [Server-side Rendering (SSR) Usage](#server-side-rendering-ssr-usage)
+    - [SSR Example](#ssr-example)
+  - [Usage with Gatsby or Next](#usage-with-gatsby-or-next)
+  - [Example Apps](#example-apps)
+  - [Why not conditionally render?](#why-not-conditionally-render)
+  - [API](#api)
+    - [createMedia](#createmedia)
+    - [MediaContextProvider](#mediacontextprovider)
+    - [Media](#media)
+      - [createMediaStyle](#createmediastyle)
+      - [onlyMatch](#onlymatch)
+      - [at](#at)
+      - [lessThan](#lessthan)
+      - [greaterThan](#greaterthan)
+      - [greaterThanOrEqual](#greaterthanorequal)
+      - [between](#between)
+  - [Pros vs Cons](#pros-vs-cons)
 
 ## Overview
 
@@ -50,7 +55,7 @@ directly in CSS/HTML:
 <div class="my-container" />
 ```
 
-By hooking into a breakpoint definition, `@artsy/fresnel` takes this declarative
+By hooking into a breakpoint definition, `@7iomka/media` takes this declarative
 approach and brings it into the React world.
 
 ## Basic Example
@@ -58,7 +63,7 @@ approach and brings it into the React world.
 ```tsx
 import React from "react"
 import ReactDOM from "react-dom"
-import { createMedia } from "@artsy/fresnel"
+import { createMedia } from "@7iomka/media"
 
 const { MediaContextProvider, Media } = createMedia({
   // breakpoints values can be either strings or integers
@@ -90,7 +95,7 @@ ReactDOM.render(<App />, document.getElementById("react"))
 ## Server-side Rendering (SSR) Usage
 
 The first important thing to note is that when server-rendering with
-`@artsy/fresnel`, all breakpoints get rendered by the server. Each `Media`
+`@7iomka/media`, all breakpoints get rendered by the server. Each `Media`
 component is wrapped by plain CSS that will only show that breakpoint if it
 matches the user's current browser size. This means that the client can
 accurately start rendering the HTML/CSS while it receives the markup, which is
@@ -101,18 +106,17 @@ Why not just render the one that the current device needs? We can't accurately
 identify which breakpoint your device needs on the server. We could use a
 library to sniff the browser user-agent, but those aren't always accurate, and
 they wouldn't give us all the information we need to know when we are
-server-rendering. Once client-side JS boots and React attaches, it simply washes
-over the DOM and removes markup that is unneeded, via a `matchMedia` call.
+server-rendering.
 
 ### SSR Example
 
-First, configure `@artsy/fresnel` in a `Media` file that can be shared across
+First, configure `@7iomka/media` in a `Media` file that can be shared across
 the app:
 
 ```tsx
 // Media.tsx
 
-import { createMedia } from "@artsy/fresnel"
+import { createMedia } from "@7iomka/media"
 
 const ExampleAppMedia = createMedia({
   breakpoints: {
@@ -179,7 +183,7 @@ app.get("/", (_req, res) => {
   res.send(`
     <html>
       <head>
-        <title>@artsy/fresnel - SSR Example</title>
+        <title>@7iomka/media - SSR Example</title>
 
         <!–– Inject the generated styles into the page head -->
         <style type="text/css">${mediaStyle}</style>
@@ -204,24 +208,14 @@ need to use a user-agent or other server-side "hints".
 
 ## Usage with Gatsby or Next
 
-`@artsy/fresnel` works great with Gatsby or Next.js's static hybrid approach to
+`@7iomka/media` works great with Gatsby or Next.js's static hybrid approach to
 rendering. See the examples below for a simple implementation.
 
 ## Example Apps
 
 There are four examples one can explore in the `/examples` folder:
 
-- [Basic](examples/basic)
-- [Server-side Rendering](examples/ssr-rendering)
-- [Gatsby](examples/gatsby)
 - [Next](examples/nextjs)
-- [Kitchen Sink](examples/kitchen-sink)
-
-While the `Basic` and `SSR` examples will get one pretty far, `@artsy/fresnel`
-can do a lot more. For an exhaustive deep-dive into its features, check out the
-[Kitchen Sink](examples/kitchen-sink) app.
-
-If you're using Gatsby, you can also try [gatsby-plugin-fresnel](https://github.com/chrissantamaria/gatsby-plugin-fresnel) for easy configuration.
 
 ## Why not conditionally render?
 
@@ -315,8 +309,6 @@ approach:
 </td></tr>
 </table>
 
-See the [server-side rendering](examples/ssr-rendering) app for a working
-example.
 
 ## API
 
@@ -441,7 +433,7 @@ It’s advisable to do this setup in its own module so that it can be easily
 imported throughout your application:
 
 ```tsx
-import { createMedia } from "@artsy/fresnel"
+import { createMedia } from "@7iomka/media"
 
 const ExampleAppMedia = createMedia({
   breakpoints: {
@@ -462,14 +454,14 @@ export const { Media, MediaContextProvider } = ExampleAppMedia
 Rendering can be constrained to specific breakpoints/interactions by specifying
 a list of media queries to match. By default _all_ will be rendered.
 
-#### disableDynamicMediaQueries
+<!-- #### disableDynamicMediaQueries (Now is)
 
 By default, when rendered client-side, the browser’s [`matchMedia`
 api][match-media-api] will be used to _further_ constrain the `onlyMatch` list
 to only the currently matching media queries. This is done to avoid triggering
 mount related life-cycle hooks of hidden components.
 
-Disabling this behaviour is mostly intended for debugging purposes.
+Disabling this behaviour is mostly intended for debugging purposes. -->
 
 #### at
 
@@ -596,8 +588,7 @@ Cons:
 
 - If utilizing SSR rendering features, when the markup is passed down from the
   server to the client it includes _all_ breakpoints, which increases the page
-  size. (However, once the client mounts, the unused breakpoint markup is
-  cleared from the DOM.)
+  size.
 - The current media query is no longer something components can access; it is
   determined only by the props of the `<Media>` component they find themselves
   in.
@@ -630,37 +621,3 @@ getComponent(breakpoint?: string) {
 
 We're still figuring out patterns for this, so please [let us know][new-issue]
 if you have suggestions.
-
-## Development
-
-<details>
-
-This project uses [auto-release](https://github.com/intuit/auto-release#readme)
-to automatically release on every PR. Every PR should have a label that matches
-one of the following
-
-- Version: Trivial
-- Version: Patch
-- Version: Minor
-- Version: Major
-
-Major, minor, and patch will cause a new release to be generated. Use major for
-breaking changes, minor for new non-breaking features, and patch for bug fixes.
-Trivial will not cause a release and should be used when updating documentation
-or non-project code.
-
-If you don't want to release on a particular PR but the changes aren't trivial
-then use the `Skip Release` tag along side the appropriate version tag.
-
-</details>
-
-[ci]: https://circleci.com/gh/artsy/fresnel
-[ci-icon]: https://circleci.com/gh/artsy/fresnel.svg?style=shield
-[npm]: https://www.npmjs.com/package/@artsy/fresnel
-[npm-icon]: https://badge.fury.io/js/%40artsy%2Ffresnel.svg
-[react-responsive]: https://github.com/contra/react-responsive
-[react-media]: https://github.com/ReactTraining/react-media
-[match-media-api]:
-  https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia
-[new-issue]: https://github.com/artsy/fresnel/issues/new
-[release-tags]: https://github.com/artsy/fresnel/blob/main/package.json
