@@ -18,7 +18,8 @@
     "clean": "rm -rf dist",
     "compile": "babel src --out-dir dist -s --source-maps --extensions '.ts,.tsx' --ignore src/**/__test__",
     "lint": "tslint -c tslint.json --project tsconfig.json",
-    
+    "precommit": "lint-staged",
+    "prepush": "yarn run type-check",
     "prepublishOnly": "yarn clean && yarn compile && yarn type-declarations",
     "prettier": "prettier",
     "prettier-project": "yarn prettier-write 'src/**/*.{ts,tsx}'",
@@ -88,7 +89,13 @@
     "webpack": "4.46.0",
     "webpack-dev-server": "4.2.1"
   },
-  
+  "lint-staged": {
+    "*.@(ts|tsx)": [
+      "tslint -c tslint.json --fix",
+      "yarn prettier-write --",
+      "git add"
+    ]
+  },
   "prettier": {
     "semi": false,
     "singleQuote": false,
