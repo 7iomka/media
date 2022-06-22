@@ -19,7 +19,6 @@
     "compile": "babel src --out-dir dist -s --source-maps --extensions '.ts,.tsx' --ignore src/**/__test__",
     "lint": "tslint -c tslint.json --project tsconfig.json",
     
-    "prepush": "yarn run type-check",
     "prepublishOnly": "yarn clean && yarn compile && yarn type-declarations",
     "prettier": "prettier",
     "prettier-project": "yarn prettier-write 'src/**/*.{ts,tsx}'",
