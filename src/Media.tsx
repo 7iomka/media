@@ -369,8 +369,8 @@ export function createMedia<
 
     const {
       children,
-      className: passedClassName,
-      style,
+      className: passedClassName = "",
+      style = {},
       interaction,
       ...breakpointProps
     } = props
@@ -448,7 +448,13 @@ export function createMedia<
                   } else {
                     return (
                       <div
-                        className={`media-container ${className} ${passedClassName}`}
+                        className={[
+                          "media-container",
+                          className,
+                          passedClassName,
+                        ]
+                          .filter(Boolean)
+                          .join(" ")}
                         style={style}
                         suppressHydrationWarning={!renderChildren}
                       >
