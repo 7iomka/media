@@ -397,10 +397,9 @@ export function createMedia<
                         let ownerName = null
                         try {
                           // @ts-ignore
-                          const owner =
-                            React
-                              .__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED
-                              .ReactCurrentOwner.return.type
+                          const owner = (React as any)
+                            .__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED
+                            .ReactCurrentOwner.return.type
                           ownerName = owner.displayName || owner.name
                         } catch (err) {
                           // no-op
