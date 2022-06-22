@@ -1,3 +1,6 @@
+### NOTE: This changelog is not actual (will be updated if author of original
+repo can't fix currently critical available issues with dynamic providers)
+
 # v3.5.0 (Wed Apr 13 2022)
 
 #### 🚀  Enhancement

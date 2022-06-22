@@ -5,12 +5,12 @@ __metadata:
   version: 6
   cacheKey: 8
 
-"@7iomka/media@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "@7iomka/media@npm:1.0.0"
+"@7iomka/media@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "@7iomka/media@npm:1.0.2"
   peerDependencies:
     react: ">=16.3.0"
-  checksum: 4293a852633862c84720aabbdbfa4750a99abfb8af5daf875cd9f2c7199a5e24985f46910c8db95f2f8f4df99c382ac8cd8c809bea44c1bb18bf9c7a7a261049
+  checksum: 941a3572918ea5337607bea1dc071d4a702251c96b7041127ad357fba893907584b0dda01fdfce0ac66eda1745c2648af286b0d0934517f16efbf86a4e231755
   languageName: node
   linkType: hard
 
@@ -175,7 +175,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "media-nextjs@workspace:."
   dependencies:
-    "@7iomka/media": ^1.0.0
+    "@7iomka/media": ^1.0.2
     "@types/react": 17.0.47
     "@types/react-dom": 17.0.11
     next: latest
