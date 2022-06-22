@@ -33,7 +33,7 @@ export function createClassName(
   ...components: Array<string | [string, string]>
 ) {
   return [
-    "fresnel",
+    "media",
     ...components.reduce(
       (acc: string[], breakpoint) =>
         Array.isArray(breakpoint)
