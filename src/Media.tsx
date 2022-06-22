@@ -463,7 +463,7 @@ export function createMedia<
                     } else {
                       return (
                         <div
-                          className={`fresnel-container ${className} ${passedClassName}`}
+                          className={`media-container ${className} ${passedClassName}`}
                           style={style}
                           suppressHydrationWarning={!renderChildren}
                         >

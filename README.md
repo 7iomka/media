@@ -481,7 +481,7 @@ The corresponding css rule:
 
 ```css
 @media not all and (min-width: 0px) and (max-width: 767px) {
-  .fresnel-at-sm {
+  .media-at-sm {
     display: none !important;
   }
 }
@@ -503,7 +503,7 @@ The corresponding css rule:
 
 ```css
 @media not all and (max-width: 1023px) {
-  .fresnel-lessThan-lg {
+  .media-lessThan-lg {
     display: none !important;
   }
 }
@@ -525,7 +525,7 @@ The corresponding css rule:
 
 ```css
 @media not all and (min-width: 1024px) {
-  .fresnel-greaterThan-md {
+  .media-greaterThan-md {
     display: none !important;
   }
 }
@@ -547,7 +547,7 @@ The corresponding css rule:
 
 ```css
 @media not all and (min-width: 768px) {
-  .fresnel-greaterThanOrEqual-md {
+  .media-greaterThanOrEqual-md {
     display: none !important;
   }
 }
@@ -570,7 +570,7 @@ The corresponding css rule:
 
 ```css
 @media not all and (min-width: 768px) and (max-width: 1191px) {
-  .fresnel-between-md-xl {
+  .media-between-md-xl {
     display: none !important;
   }
 }

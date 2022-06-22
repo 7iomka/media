@@ -149,14 +149,14 @@ describe("Media", () => {
 
     it("includes only style rules for specified breakpoint keys", () => {
       const defaultMediaStyles = createMediaStyle()
-      expect(defaultMediaStyles).toContain(".fresnel-between-small-large")
+      expect(defaultMediaStyles).toContain(".media-between-small-large")
 
       const subsetMediaStyles = createMediaStyle([
         BreakpointConstraint.at,
         BreakpointConstraint.greaterThan,
       ])
-      expect(subsetMediaStyles).not.toContain(".fresnel-between-small-large")
-      expect(subsetMediaStyles).toContain(".fresnel-at-extra-small")
+      expect(subsetMediaStyles).not.toContain(".media-between-small-large")
+      expect(subsetMediaStyles).toContain(".media-at-extra-small")
     })
   })
 

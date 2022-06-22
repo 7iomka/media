@@ -31,7 +31,7 @@ export class MediaQueries<B extends string> {
   public toStyle = (breakpointKeys?: BreakpointConstraint[]) => {
     return [
       // Don’t add any size to the layout
-      ".fresnel-container{margin:0;padding:0;}",
+      ".media-container{margin:0;padding:0;}",
       ...this._breakpoints.toRuleSets(breakpointKeys),
       ...this._interactions.toRuleSets(),
     ].join("\n")
