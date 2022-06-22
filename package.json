@@ -1,6 +1,6 @@
 {
   "name": "@7iomka/media",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "CSS-only wrappers for media query based containers",
   "main": "dist/index.js",
   "files": [
