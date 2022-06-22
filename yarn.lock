@@ -38,7 +38,7 @@ __metadata:
     jest: 24.9.0
     jest-styled-components: 6.2.2
     lint-staged: 7.3.0
-    prettier: 1.17.1
+    prettier: ^2.7.1
     react: 17.0.1
     react-dom: 17.0.1
     react-test-renderer: 17.0.1
@@ -9165,12 +9165,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:1.17.1":
-  version: 1.17.1
-  resolution: "prettier@npm:1.17.1"
+"prettier@npm:^2.7.1":
+  version: 2.7.1
+  resolution: "prettier@npm:2.7.1"
   bin:
-    prettier: ./bin-prettier.js
-  checksum: 0050eea865eeb4f47cb05a5ced6ebd07e5cdecdb79c2dc12da04ec23c4ded51a26a01c5305c30bf39e7ff220402457c81225fb3725a07fc5dfd4030069729be9
+    prettier: bin-prettier.js
+  checksum: 55a4409182260866ab31284d929b3cb961e5fdb91fe0d2e099dac92eaecec890f36e524b4c19e6ceae839c99c6d7195817579cdffc8e2c80da0cb794463a748b
   languageName: node
   linkType: hard
 

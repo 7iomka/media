@@ -1,4 +1,4 @@
-import { createMedia } from "@7iomka/media"
+import { createMedia } from "../../../dist"
 
 const ExampleAppMedia = createMedia({
   breakpoints: {

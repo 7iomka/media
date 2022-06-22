@@ -17,15 +17,6 @@
     "no-namespace": [true, "allow-declarations"],
     "trailing-comma": false,
     "variable-name": [true, "ban-keywords", "allow-leading-underscore"],
-    "completed-docs": [
-      true,
-      {
-        "functions": { "visibilities": ["exported"] },
-        "classes": { "visibilities": ["exported"] },
-        "types": { "visibilities": ["exported"] },
-        "variables": { "visibilities": ["exported"] }
-      }
-    ],
     "no-unnecessary-initializer": false
   }
 }
