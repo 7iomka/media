@@ -1,7 +1,6 @@
 // tslint:disable:jsdoc-format
 
 import React, { CSSProperties } from "react"
-import { createResponsiveComponents } from "./DynamicResponsive"
 import { MediaQueries } from "./MediaQueries"
 import {
   intersection,
@@ -330,8 +329,6 @@ export function createMedia<
     breakpoints,
     config.interactions || {}
   )
-
-  const DynamicResponsive = createResponsiveComponents()
 
   const MediaContext = React.createContext<
     MediaContextProviderProps<BreakpointKey | Interaction>
